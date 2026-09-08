@@ -1,6 +1,6 @@
 import { graphqlWithVariables, toISODate } from "@openimis/fe-core";
 import _ from "lodash";
-import { EMPTY_STRING, LIMIT_COLUMNS, LIMIT_TYPES, PRICE_ORIGINS } from "./constants";
+import { EMPTY_STRING, LIMIT_COLUMNS, LIMIT_TYPES, PRICE_ORIGINS, PRODUCT_CODE_MAX_LENGTH } from "./constants";
 
 export const validateProductForm = (values, rules, isProductCodeValid) => {
   values = { ...values };
@@ -40,7 +40,7 @@ export const validateProductForm = (values, rules, isProductCodeValid) => {
     errors.ageMinimal = true;
   }
 
-  if (!isProductCodeValid) {
+  if (!isProductCodeValid || (values?.code && values?.code?.length > PRODUCT_CODE_MAX_LENGTH)) {
     errors.isProductCodeInvalid = true;
   }
 
@@ -100,11 +100,11 @@ export const toFormValues = (product, shouldDuplicate) => {
   };
 };
 
-export const rulesToFormValues = (rules) => {
+export const rulesToFormValues = (rules = {}) => {
   return {
     ...rules,
-    minLimitValue: Number(rules.minLimitValue) ?? 0.0,
-    maxLimitValue: Number(rules.maxLimitValue) ?? 100.0,
+    minLimitValue: rules?.minLimitValue != null ? Number(rules.minLimitValue) : 0.0,
+    maxLimitValue: rules?.maxLimitValue != null ? Number(rules.maxLimitValue) : 100.0,
   };
 };
 

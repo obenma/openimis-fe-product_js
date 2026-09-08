@@ -1,7 +1,7 @@
 # openIMIS Frontend Product reference module
 This repository holds the files of the openIMIS Frontend Product reference module.
 
-> NOTE: This branch contains development version of this module based on Vite. Please use the `release/26.04` branch if you intend to fix issues via Pull Requests for the [current release](https://openimis.atlassian.net/wiki/spaces/OP/pages/4653678593/Sources+Release+2026-04) of openIMIS. The migration to vite is scheduled to conclude by end of June 2026.
+
 
 It is dedicated to be deployed as a module of [openimis-fe_js](https://github.com/openimis/openimis-fe_js).
 
@@ -28,3 +28,6 @@ None (Administration module providing menu entries to proxied pages for products
 - `product.ProductPicker`: Picker that returns products matching the string entered by the user.
 - `product.hooks.useProductsQuery`: Hook to get a filtered connection on products
 - `product.hooks.useProductQuery`: Hook to get a product with all its fields
+
+## Configurations Options
+- `productCodeMaxLength`: Maximum length of the product code (default: 8)
